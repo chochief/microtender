@@ -1,0 +1,26 @@
+
+.categories {
+	// margin: 7px;
+}
+
+.categories__title {
+	@include bold;
+	margin-bottom: 8px;
+}
+
+.categories__item {
+	// white-space: nowrap;
+	// overflow-x: hidden;
+	padding: 1px 0;
+	@include bold;
+	line-height: 1.6;
+}
+
+.categories__link {
+	display: block;
+	color: $blue;
+	cursor: pointer;
+	&:hover, &:active {
+		color: saturate($blue-border, 25%);
+	}
+}

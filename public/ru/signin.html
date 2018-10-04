@@ -1,0 +1,47 @@
+
+<div class="content__left">
+  <div class="categories block">
+    <div class="categories__title">Популярные категории</div>
+    <ul class="categories__list">
+      <li class="categories__item"><a href="#/" class="categories__link">Реклама</a></li>
+      <li class="categories__item"><a href="#/" class="categories__link">Строительство и ремонт</a></li>
+      <li class="categories__item"><a href="#/" class="categories__link">Стройматериалы</a></li>
+    </ul>
+  </div>
+</div>
+<div class="content__center">
+  <section class="block block_white">
+    <h1>Авторизация</h1>
+    <div class="lead">Вход в панель управления</div>
+    <form name="signinForm" novalidate="novalidate" ng-submit="signinCtrl.submit()" class="form">
+      <div class="form-group">
+        <label>Логин</label>
+        <input type="text" required="required" ng-model="signinCtrl.name" autocomplete="off" ng-disabled="signinCtrl.formDisabled()"/><span class="help-block">Введите ваш логин</span>
+      </div>
+      <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" required="required" ng-model="signinCtrl.password" ng-disabled="signinCtrl.formDisabled()"/><span class="help-block">Введите ваш пароль</span>
+      </div>
+      <button type="submit" ng-disabled="signinForm.$invalid || signinCtrl.formDisabled()" class="button_admin button_red">Войти</button>
+    </form>
+  </section>
+</div>
+<div class="content__right">
+  <div class="block block_white">
+    <div class="social">
+      <div class="social__title">Рассказать друзьям</div>
+      <ul class="social__list">
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/email.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/vk.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/tw.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/ok.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/fb.png" alt="" class="social__ico"/></a></li>
+      </ul>
+    </div>
+    <div class="news">
+      <div class="news__title">Новости</div>
+      <div ng-repeat="nw in [1,2]" class="news__item"><span class="news__item-date">15.08.2016 </span><span class="news__item-text">В тестовом режиме начал ...</span><a href="#" class="news__item-link">подробнее</a></div>
+    </div>
+  </div>
+  <div ng-repeat="adv in [1,2]" class="adv block block_white"><a href="https://vk.com/yazabeg" target="_blank" class="adv__link"><img ng-src="/pic/yazabeg-{{adv}}.jpg" alt="" class="adv__pic"/></a></div>
+</div>

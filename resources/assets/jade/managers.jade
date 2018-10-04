@@ -1,0 +1,60 @@
+.content__left
+	include admin-nav
+.content__center
+	section.block.block_white
+		h1 Поставщики
+		.lead Менеджеры, к которым уходят тендеры
+		form.form(name="managersSearchForm" novalidate)
+			.form-group
+				label Фильтр
+				input(type="text" ng-model="managersCtrl.search" )
+				span.help-block Быстрый поиск по базе поставщиков
+		button(ng-click="managersCtrl.showAdd = !managersCtrl.showAdd") Новый поставщик 
+	section.block.block_white.manager(ng-if="managersCtrl.showAdd" ng-controller="regCtrl as regCtrl" ng-init="regCtrl.manSet(managersCtrl)")
+		h1 Новый поставщик
+		.lead Регистрация менеджера и его компании
+		.manager__edit(ng-click="managersCtrl.showAdd = false") Cancel
+		include manager_new
+	section.block.block_white.manager(ng-repeat="manager in managersCtrl.managers() | filter:managersCtrl.search" ng-class="{manager_disabled: !manager.enabled}" ng-controller="regCtrl as regCtrl")
+		//- .manager__info {{manager.created_at}}
+		.manager__edit(ng-click="regCtrl.edit(manager)") {{regCtrl.editBtn}}
+		.manager__del(ng-click="manager.del = true" ng-if="!manager.del") 
+			span.manager__del-text Del
+		.manager__del2(ng-if="manager.del") Удалить?
+			div
+				span.manager__del-btn(ng-click="managersCtrl.delete(manager)") Да
+				span.manager__del-btn(ng-click="manager.del = false") Нет
+		div(ng-if="!regCtrl.isEditing")
+			.manager__enabled(ng-click="managersCtrl.on_off(manager)")
+				.on(ng-if="manager.enabled") ON
+					div 
+				.off(ng-if="!manager.enabled") OFF
+					div 
+			.h3 {{manager.surname}} {{manager.name}} {{manager.middle_name}}
+			.lead {{manager.company}}
+			.manager__block
+				.manager_left Должность: {{manager.post}}
+					br
+					|Рабочий телефон: {{manager.phone}}
+					br
+					|Мобильный: {{manager.mobile}}
+					br
+					|E-mail: {{manager.email}}
+				.manager_right ИНН: {{manager.inn}}
+					br
+					|Адрес: {{manager.address}}
+					br
+					|Сайт: 
+					a.manager_site(ng-href="{{'http://' +  manager.site}}" target="_blank") {{manager.site}}
+					br
+					|Описание: {{manager.description}}
+			.manager__line
+			.manager__block
+				.manager_left Категории:
+					.manager__params(ng-repeat="cat in manager.subcats") {{cat.name}} 
+				.manager_right Города:
+					.manager__params(ng-repeat="city in manager.cities") {{city.name}} 
+		div(ng-if="regCtrl.isEditing")
+			include manager_edit
+.content__right
+	include logout-panel

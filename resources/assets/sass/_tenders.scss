@@ -1,0 +1,43 @@
+
+.tender {
+	@include clearfix;
+}
+
+.tender__info {
+	@include normal;
+	font-size: 12px;
+	color: $blue;
+	margin-bottom: 14px;
+}
+
+.tender__text {
+	@extend .p;
+}
+
+.tender__line {
+	@extend .block__line;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.tender__block {
+	@include clearfix;
+}
+
+.tender__left {
+	@extend .small;
+	width: 50%;
+	float: left;
+	padding: 0 10px 0 0;
+}
+
+.tender__right {
+	@extend .small;
+	width: 50%;
+	float: right;
+	padding: 0 0 0 10px;
+}
+
+.tender_recepient {
+	padding-top: 7px;
+}

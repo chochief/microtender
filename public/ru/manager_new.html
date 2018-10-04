@@ -1,0 +1,90 @@
+
+<form name="regForm" novalidate="novalidate" ng-submit="regCtrl.submit(regForm)" class="form">
+  <div ng-if="regCtrl.showMsg()" class="top-form__message">
+    <div class="top-form__msg-title">Сообщение</div>
+    <div class="top-form__msg">{{regCtrl.msg}}</div>
+    <button ng-click="regCtrl.msgClose()" class="button button_red top-form__close">Закрыть</button>
+  </div>
+  <div class="form-group">
+    <label>Наименование компании *</label>
+    <input type="text" ng-model="regCtrl.company" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="2" ng-click="regCtrl.clearSelect()"/>
+  </div>
+  <div class="form-group">
+    <label>Адрес *</label>
+    <input type="text" ng-model="regCtrl.address" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="5"/>
+  </div>
+  <div class="form-group size33">
+    <label>ИНН *</label>
+    <input type="text" ng-model="regCtrl.inn" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="9"/>
+  </div>
+  <div class="form-group size23r">
+    <label>Сайт</label>
+    <input type="text" ng-model="regCtrl.site" ng-disabled="regCtrl.formDisabled()"/>
+  </div>
+  <div ng-controller="selecCtrl as selecCtrl" class="select-zone">
+    <div ng-class="selecCtrl.openClass(1)" ng-controller="catCtrl as catCtrl" ng-init="regCtrl.catSet(catCtrl)" class="form-group form-group_left">
+      <label>Категории *</label>
+      <div class="select-panel">
+        <div ng-click="selecCtrl.open(1)" class="select-panel__selected">{{catCtrl.selectedState()}}</div>
+        <ul class="select-panel__list">
+          <li ng-repeat="cat in catCtrl.cats()" class="select-panel__option">{{cat.name}}
+            <ul class="select-panel__item-list">
+              <li ng-repeat="subcat in catCtrl.subCats(cat)" ng-click="catCtrl.catsChoice(subcat)" ng-class="catCtrl.activeCat(subcat)" class="select-panel__item">{{subcat.name}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div><span class="help-block">Какие заявки вас интересуют</span><span ng-repeat="selectedCat in catCtrl.selectedCats()" class="help-block help-block_selected">{{selectedCat.name}}</span>
+    </div>
+    <div ng-class="selecCtrl.openClass(2)" ng-controller="cityCtrl as cityCtrl" ng-init="regCtrl.citySet(cityCtrl)" class="form-group form-group_right">
+      <label>Города *</label>
+      <div class="select-panel">
+        <div ng-click="selecCtrl.open(2)" class="select-panel__selected">{{cityCtrl.selectedState()}}</div>
+        <ul class="select-panel__list">
+          <li ng-repeat="district in cityCtrl.districts()" class="select-panel__option">{{district.name}}
+            <ul class="select-panel__item-list">
+              <li ng-repeat="city in cityCtrl.districtCities(district)" ng-click="cityCtrl.cityChoice(city)" ng-class="cityCtrl.activeCity(city)" class="select-panel__item">{{city.name}}</li>
+            </ul>
+          </li>
+        </ul>
+      </div><span class="help-block">Откуда должны приходить заявки</span><span ng-repeat="selectedCity in cityCtrl.selectedCities()" class="help-block help-block_selected">{{selectedCity.name}}</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Описание компании *</label>
+    <textarea ng-model="regCtrl.description" ng-disabled="regCtrl.formDisabled()" text-area="text-area" form="regForm" ctrl="regCtrl" rows="5" required="required" ng-minlength="10"></textarea>
+    <div class="hiddendiv"></div><span class="help-block">Расскажите немного о компании</span>
+  </div>
+  <div class="form-group form-group_left size33c">
+    <label>Фамилия *</label>
+    <input type="text" ng-model="regCtrl.surname" ng-disabled="regCtrl.formDisabled()" required="required"/>
+  </div>
+  <div class="form-group form-group_left size33c">
+    <label>Имя *</label>
+    <input type="text" ng-model="regCtrl.name" ng-disabled="regCtrl.formDisabled()" required="required"/>
+  </div>
+  <div class="form-group form-group_right size33r">
+    <label>Отчество</label>
+    <input type="text" ng-model="regCtrl.middle_name" ng-disabled="regCtrl.formDisabled()"/>
+  </div>
+  <div class="form-group form-group_left size33c">
+    <label>Должность *</label>
+    <input type="text" ng-model="regCtrl.post" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="3"/>
+  </div>
+  <div class="form-group form-group_left size33c">
+    <label>Рабочий телефон *</label>
+    <input type="text" ng-model="regCtrl.phone" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="4" ng-pattern="/^[ 0-9+()-]{5,25}$/"/>
+  </div>
+  <div class="form-group form-group_right size33r">
+    <label>Мобильный телефон</label>
+    <input type="text" ng-model="regCtrl.mobile" ng-disabled="regCtrl.formDisabled()" ng-pattern="/^[ 0-9+()-]{5,25}$/"/>
+  </div>
+  <div class="help-block help-block_33">Поля * обязательны для заполнения</div>
+  <div class="form-group">
+    <label>Ваш email *</label>
+    <input type="email" ng-model="regCtrl.email" ng-disabled="regCtrl.formDisabled()" required="required" ng-minlength="7"/>
+    <div class="help-block">На этот адрес будут приходить заявки</div>
+  </div>
+  <div class="top-form__bottom">
+    <button type="submit" ng-disabled="regForm.$invalid || regCtrl.formDisabled() || regCtrl.customEmpty()" class="top-form__want">Добавить поставщика</button>
+  </div>
+</form>

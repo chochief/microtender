@@ -1,0 +1,19 @@
+
+.footer__container {
+	text-align: center;
+}
+
+.footer__copyright {
+	font-size: 0.8em;
+	display: inline-block;
+}
+
+.footer__signin {
+	font-size: 0.9em;
+	display: inline-block;
+	color: $blue-border;
+	cursor: pointer;
+	&:hover {
+		text-decoration: underline;
+	}
+}

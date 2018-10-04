@@ -1,0 +1,17 @@
+
+.block {
+	margin-top: 14px;
+	padding: 14px;
+
+	&.block_white {
+		background-color: $white;
+		border-radius: 2px;
+		box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+	}
+}
+
+.block__line {
+	width: 100%;
+	// height: 15px;
+	border-bottom: 1px solid $grey-form;
+}

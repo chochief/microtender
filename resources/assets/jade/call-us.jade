@@ -1,0 +1,27 @@
+section.call-us.block.block_white
+	h1 Связаться с нами
+	.lead Вы можете нам написать
+	//- .block__line
+	form.form(name="callForm" novalidate ng-submit="callCtrl.submit(callForm)")
+		.top-form__message(ng-if="callCtrl.showMsg()")
+			.top-form__msg-title Сообщение
+			.top-form__msg {{callCtrl.msg}}
+			button.button.button_red.top-form__close(ng-click="callCtrl.msgClose()") Закрыть
+		.form-group.form-group_left.size33c
+			label Ваше имя
+			input(type="text" ng-minlength="3" ng-model="callCtrl.name" ng-disabled="callCtrl.formDisabled()")
+		.form-group.form-group_left.size33c
+			label Ваш e-mail
+			input(type="email" ng-minlength="7" ng-model="callCtrl.email" ng-disabled="callCtrl.formDisabled()")
+		.form-group.form-group_right.size33r
+			label Ваш телефон
+			input(type="text" ng-pattern="/^[ 0-9+()-]{5,15}$/" ng-model="callCtrl.phone" ng-disabled="callCtrl.formDisabled()")
+		.help-block.help-block_33 Оставьте, пожалуйста, свои координаты
+		.form-group
+			label Текст
+			textarea(rows="5" required ng-minlength="10" ng-model="callCtrl.text" ng-disabled="callCtrl.formDisabled()" text-area form="callForm" ctrl="callCtrl")
+			.hiddendiv
+			span.help-block Ваше сообщение
+		.top-form__bottom
+			//- button.top-form__want(type="submit") Добавить свой микротендер
+			button.top-form__want(type="submit" ng-disabled="callForm.$invalid || callCtrl.formDisabled()") Отправить

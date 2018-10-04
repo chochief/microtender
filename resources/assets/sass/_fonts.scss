@@ -1,0 +1,116 @@
+
+// @import 'https://fonts.googleapis.com/css?family=Ubuntu:300,700&subset=cyrillic';
+// font-family: 'Ubuntu', sans-serif;
+
+// @import 'https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=cyrillic';
+@import 'https://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=cyrillic,cyrillic-ext';
+// font-family: 'PT Sans', sans-serif;
+
+@mixin bold () {
+	// font-family: 'Ubuntu', sans-serif;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 700;
+}
+
+@mixin normal () {
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 400;
+	// font-family: 'Ubuntu', sans-serif;
+	// font-weight: 300;
+}
+
+.h2 {
+	@include bold;
+	font-size: 2.2em;
+	margin: 0.5em 0;
+
+	@media(max-width: 500px) {
+		font-size: 1.4em;
+	}
+
+	&::selection { background: $blue-border; color: $white; }
+	&::-moz-selection { background: $blue-border; color: $white; }
+	&::-webkit-selection { background: $blue-border; color: $white; }
+}
+
+.h3 {
+	@extend .h2;
+	font-size: 1.7em;
+	margin: 0;
+	& .rouble {
+		// font-size: 1.1em;
+		padding-left: 5px;
+	}
+}
+
+.h4 {
+	@extend .h3;
+	font-size: 1.2em;
+	margin: 0;
+}
+
+.lead {
+	@include normal;
+	font-size: 1.4em;
+	margin: 0 0 0.9em;
+
+	@media(max-width: 500px) {
+		font-size: 1.1em;
+	}
+
+	&::selection { background: $blue-border; color: $white; }
+	&::-moz-selection { background: $blue-border; color: $white; }
+	&::-webkit-selection { background: $blue-border; color: $white; }
+}
+
+.p {
+	@include normal;
+	font-size: 1.05em;
+	margin: 0 0 1.5em;
+
+	@media(max-width: 500px) {
+		font-size: 0.9em;
+	}
+
+	&::selection { background: $blue-border; color: $white; }
+	&::-moz-selection { background: $blue-border; color: $white; }
+	&::-webkit-selection { background: $blue-border; color: $white; }
+}
+
+.small {
+	@extend .p;
+	font-size: 0.9em;
+	margin: 0;
+}
+
+.caps {
+	@include normal;
+	font-size: 1.1em;
+	text-transform: uppercase;
+
+	@media(max-width: 500px) {
+		font-size: 1.0em;
+	}
+
+	&::selection { background: $blue-border; color: $white; }
+	&::-moz-selection { background: $blue-border; color: $white; }
+	&::-webkit-selection { background: $blue-border; color: $white; }
+}
+
+.link {
+	@include normal;
+	color: $blue-border;
+	text-transform: uppercase;
+	font-size: 0.9em;
+	&:after {
+		content: " \203A";
+	}
+	&:hover {
+		color: saturate($blue-border, 40%);
+		// color: saturate($blue, 40%);
+	}
+
+	&::selection { background: $blue-border; color: $white; }
+	&::-moz-selection { background: $blue-border; color: $white; }
+	&::-webkit-selection { background: $blue-border; color: $white; }
+}

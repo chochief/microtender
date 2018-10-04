@@ -1,0 +1,22 @@
+
+.news {
+	margin-top: 14px;
+}
+
+.news__title {
+	@include bold;
+	margin-bottom: 3px; // 8px
+}
+
+.news__item	{
+	margin-top: 5px;
+	font-size: 0.85em;
+}
+
+.news__item-link {
+	display: block;
+	color: $blue;
+	&:hover, &:active {
+		color: saturate($blue-border, 25%);
+	}
+}

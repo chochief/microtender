@@ -1,0 +1,17 @@
+.content__left
+	include admin-nav
+.content__center
+	section.block.block_white
+		h1 Категории
+		.lead Справочник отраслей
+		.dict__dir(ng-repeat="cat in admcatsCtrl.cats()")
+			.dict__dir-name {{cat.name}}
+			.dict__item(ng-repeat="subcat in admcatsCtrl.subCats(cat)" ng-class="{dict_disabled: !subcat.enabled}")
+				.dict__item-enabled(ng-click="admcatsCtrl.on_off(subcat)")
+					.on(ng-if="subcat.enabled") ON
+						div 
+					.off(ng-if="!subcat.enabled") OFF
+						div 					
+				.dict__item-name {{subcat.name}}
+.content__right
+	include logout-panel

@@ -1,0 +1,10 @@
+
+<div class="block block_white">
+  <div class="social">
+    <div class="social__title">Hello, {{bodyCtrl.username()}}!</div><span ng-click="bodyCtrl.logout()" class="footer__signin">Выйти</span>
+  </div>
+  <div class="news">
+    <div class="news__title">Новости</div>
+    <div ng-repeat="nw in [1,2]" class="news__item"><span class="news__item-date">15.08.2016 </span><span class="news__item-text">В тестовом режиме начал ...</span><a href="#" class="news__item-link">подробнее</a></div>
+  </div>
+</div>

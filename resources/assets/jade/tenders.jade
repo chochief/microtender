@@ -1,0 +1,38 @@
+.content__left
+	include admin-nav
+.content__center
+	section.block.block_white
+		h1 Тендеры
+		.lead Какие заявки куда распределены
+		form.form(name="tenderSearchForm" novalidate)
+			.form-group
+				label Фильтр
+				input(type="text" ng-model="tendersCtrl.search" )
+				span.help-block Быстрый поиск по тендерам
+	section.block.block_white.microtender(ng-repeat="tender in tendersCtrl.tenders() | filter:tendersCtrl.search")
+		.microtender__info \#{{tender.id}} | {{tendersCtrl.getDate(tender.created_at) | date:"dd.MM.yyyy HH:mm"}} | {{tender.category}} | {{tender.city}}
+		.microtender__rub {{tender.budjet}}
+			div
+			//- span.rouble &#8381;
+			//- span.rouble &#x584;
+		.lead {{tender.text}}
+		.tender__block
+			.tender__left
+				.h4 Заказчик
+				.tender_recepient
+					|Имя: {{tender.customer.name}}
+					br
+					|E-mail: {{tender.customer.email}}
+					br
+					|Телефон: {{tender.customer.phone}}
+			.tender__right
+				.h4 Поставщики
+				.tender_recepient(ng-repeat="recipient in tender.recipients")
+					|Имя: {{recipient.surname}} {{recipient.name}} {{recipient.middle_name}}
+					br
+					|E-mail: {{recipient.email}}
+					br
+					|Компания: {{recipient.company}}
+		//- .tender__line
+.content__right
+	include logout-panel

@@ -1,0 +1,140 @@
+
+<div class="content__left">
+  <div class="categories block">
+    <div class="categories__title">Популярные категории</div>
+    <ul class="categories__list">
+      <li class="categories__item"><a href="#/" class="categories__link">Реклама</a></li>
+      <li class="categories__item"><a href="#/" class="categories__link">Строительство и ремонт</a></li>
+      <li class="categories__item"><a href="#/" class="categories__link">Стройматериалы</a></li>
+    </ul>
+  </div>
+</div>
+<div class="content__center">
+  <section class="top-form block block_white">
+    <div class="banner">
+      <h1 class="banner__title">Рассылка заказов на просчет</h1>
+      <div class="banner__text">заполните заявку<br/>и мы автоматически отправим ее на просчет<br/>в десятки проверенных компаний</div>
+    </div>
+    <form name="topForm" ng-controller="topCtrl as topCtrl" novalidate="novalidate" ng-submit="topCtrl.submit(topForm)" class="form">
+      <div ng-if="topCtrl.showMsg()" class="top-form__message">
+        <div class="top-form__msg-title">Сообщение</div>
+        <div class="top-form__msg">{{topCtrl.msg}}</div>
+        <button ng-click="topCtrl.msgClose()" class="button button_red top-form__close">Закрыть</button>
+      </div>
+      <div ng-controller="selecCtrl as selecCtrl" class="select-zone">
+        <div ng-class="selecCtrl.openClass(1)" ng-controller="catCtrl as catCtrl" class="form-group form-group_left">
+          <label>Категория</label>
+          <div class="select-panel">
+            <div ng-click="selecCtrl.open(1)" class="select-panel__selected">{{catCtrl.selectedCat()}}</div>
+            <ul class="select-panel__list">
+              <li ng-repeat="cat in catCtrl.cats()" class="select-panel__option">{{cat.name}}
+                <ul class="select-panel__item-list">
+                  <li ng-repeat="subcat in catCtrl.subCats(cat)" ng-click="catCtrl.choice(subcat); selecCtrl.open(0)" ng-class="catCtrl.active(subcat)" class="select-panel__item">{{subcat.name}}</li>
+                </ul>
+              </li>
+            </ul>
+          </div><span class="help-block">К какой отрасли относится</span>
+          <input type="hidden" ng-model="topCtrl.subcat" value="catCtrl.getCatId(topCtrl.subcat)"/>
+        </div>
+        <div ng-class="selecCtrl.openClass(2)" ng-controller="cityCtrl as cityCtrl" class="form-group form-group_right">
+          <label>Город</label>
+          <div class="select-panel">
+            <div ng-click="selecCtrl.open(2)" class="select-panel__selected">{{cityCtrl.selectedCity()}}</div>
+            <ul class="select-panel__list">
+              <li ng-repeat="district in cityCtrl.districts()" class="select-panel__option">{{district.name}}
+                <ul class="select-panel__item-list">
+                  <li ng-repeat="city in cityCtrl.districtCities(district)" ng-click="cityCtrl.choice(city); selecCtrl.open(0)" ng-class="cityCtrl.active(city)" class="select-panel__item">{{city.name}}</li>
+                </ul>
+              </li>
+            </ul>
+          </div><span class="help-block">Где должен выполняться заказ</span>
+          <input type="hidden" ng-model="topCtrl.city" value="catCtrl.getCityId(topCtrl.city)"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Заявка</label>
+        <textarea rows="5" required="required" ng-minlength="10" ng-model="topCtrl.order" ng-disabled="topCtrl.formDisabled()" text-area="text-area" form="topForm" ctrl="topCtrl"></textarea>
+        <div class="hiddendiv"></div><span class="help-block">Максимально подробно опишите Вашу заявку</span>
+      </div>
+      <div class="top-form__budget">
+        <div class="form-group size33">
+          <label>Бюджет</label>
+          <input type="text" required="required" ng-pattern="/^[0-9]+$/" ng-model="topCtrl.budget" ng-disabled="topCtrl.formDisabled()"/><span class="help-block">Затраты, в руб.</span>
+        </div>
+        <div class="top-form__price">
+          <div ng-click="topCtrl.priceToggle()" ng-class="topCtrl.priceState()" class="check-panel">Пусть поставщики сами предложат цену</div>
+        </div>
+      </div>
+      <div class="form-group form-group_left size33c">
+        <label>Ваше имя</label>
+        <input type="text" required="required" ng-minlength="3" ng-model="topCtrl.name" ng-disabled="topCtrl.formDisabled()"/>
+      </div>
+      <div class="form-group form-group_left size33c">
+        <label>Ваш e-mail</label>
+        <input type="email" required="required" ng-minlength="7" ng-model="topCtrl.email" ng-disabled="topCtrl.formDisabled()"/>
+      </div>
+      <div class="form-group form-group_right size33r">
+        <label>Ваш телефон</label>
+        <input type="text" required="required" ng-pattern="/^[ 0-9+()-]{5,15}$/" ng-model="topCtrl.phone" ng-disabled="topCtrl.formDisabled()"/>
+      </div>
+      <div class="help-block help-block_33">Все поля обязательны для заполнения</div>
+      <div class="top-form__bottom">
+        <button type="button" ng-click="topCtrl.attachFile()" class="button button_link top-form__img">Прикрепить изображение
+          <input type="file" id="fileInput" accept="image/jpeg"/>
+        </button>
+        <button type="submit" ng-disabled="topForm.$invalid || topCtrl.formDisabled() || topCtrl.customEmpty()" class="top-form__want">Добавить свой микротендер</button>
+      </div>
+    </form>
+    <div class="banner">
+      <div class="banner__text">Поставщики сами выстроятся к Вам в очередь,<br/>чтобы предложить лучшие условия! Это бесплатно.</div>
+    </div>
+  </section>
+  <h3 class="bg-title">Текущие микротендеры</h3>
+  <section class="block block_white microtender">
+    <div class="microtender__info">#152369 | 25.07.2016 19:17 | Автозапчасти и ремонт/Автозапчасти | г.Ярославль</div>
+    <div class="microtender__pic-empty"> <span>нет изображения</span></div>
+    <div class="microtender__text-block">
+      <div class="microtender__block">Автозапчасти для Тойота Селика VIN <span class="microtender__text-grey">(доступен только зарегистрированным поставщикам) </span>Требуются:
+        <ul class="microtender__list">
+          <li class="microtender__list-item">1. Тормозные диски по кругу, лучше (предложите варианты);</li>
+          <li class="microtender__list-item">2. Ремкомплект суппортов по кругу;</li>
+          <li class="microtender__list-item">3. Колодки по кругу;</li>
+          <li class="microtender__list-item">4. Левая передняя шаровая;</li>
+          <li class="microtender__list-item">5. Тормозной шланг к правому переднему колесу.</li>
+        </ul>
+        <div class="microtender__bottom"><span class="microtender__budget">Стартовый бюджет</span><span class="microtender__start">15000 руб.</span>
+          <button ng-click="bodyCtrl.call('want')" class="microtender__want">Хочу получить этот заказ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="block block_white microtender">
+    <div class="microtender__info">#152368 | 25.07.2016 15:07 | Мебель на заказ/Шкафы-купе | г.Ярославль</div><img src="/pic/cupe.jpg" alt="" class="microtender__pic"/>
+    <div class="microtender__text-block">
+      <div class="microtender__block">Шкаф купе ширина 140 см, высота 260 см, глубина 60 см. Цвет темный венге с матовыми хромированными элементами, зеркала на все двери (фото немного не такое). Одна половина с полками, вторая со штангой.
+        <div class="microtender__bottom"><span class="microtender__budget">Стартовый бюджет</span><span class="microtender__start">14000 руб.</span>
+          <button ng-click="bodyCtrl.call('want')" class="microtender__want button button_red">Хочу получить этот заказ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="content__right">
+  <div class="block block_white">
+    <div class="social">
+      <div class="social__title">Рассказать друзьям</div>
+      <ul class="social__list">
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/email.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/vk.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/tw.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/ok.png" alt="" class="social__ico"/></a></li>
+        <li class="social__item"><a href="#" class="social__link"><img src="/pic/fb.png" alt="" class="social__ico"/></a></li>
+      </ul>
+    </div>
+    <div class="news">
+      <div class="news__title">Новости</div>
+      <div ng-repeat="nw in [1,2]" class="news__item"><span class="news__item-date">15.08.2016 </span><span class="news__item-text">В тестовом режиме начал ...</span><a href="#" class="news__item-link">подробнее</a></div>
+    </div>
+  </div>
+  <div ng-repeat="adv in [1,2]" class="adv block block_white"><a href="https://vk.com/yazabeg" target="_blank" class="adv__link"><img ng-src="/pic/yazabeg-{{adv}}.jpg" alt="" class="adv__pic"/></a></div>
+</div>

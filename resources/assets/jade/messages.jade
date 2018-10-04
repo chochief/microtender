@@ -1,0 +1,16 @@
+.content__left
+	include admin-nav
+.content__center
+	section.block.block_white
+		h1 Сообщения
+		.lead Что люди пишут
+		form.form(name="msgSearchForm" novalidate)
+			.form-group
+				label Фильтр
+				input(type="text" ng-model="messagesCtrl.search" )
+				span.help-block Быстрый поиск по сообщениям
+	section.block.block_white.message(ng-repeat="message in messagesCtrl.messages() | filter:messagesCtrl.search")
+		.message__info {{message.created_at}} | {{message.name}} | {{message.email}} | {{message.phone}}
+		.message__text  {{message.text}}
+.content__right
+	include logout-panel

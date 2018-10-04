@@ -1,0 +1,17 @@
+.content__left
+	include admin-nav
+.content__center
+	section.block.block_white
+		h1 Города
+		.lead Справочник регионов
+		.dict__dir(ng-repeat="district in admcitiesCtrl.districts()")
+			.dict__dir-name {{district.name}}
+			.dict__item(ng-repeat="city in admcitiesCtrl.districtCities(district)" ng-class="{dict_disabled: !city.enabled}")
+				.dict__item-enabled(ng-click="admcitiesCtrl.on_off(city)")
+					.on(ng-if="city.enabled") ON
+						div 
+					.off(ng-if="!city.enabled") OFF
+						div 					
+				.dict__item-name {{city.name}}
+.content__right
+	include logout-panel

@@ -1,0 +1,80 @@
+
+.header {
+	background-color: $blue; 
+	@include clearfix;
+	border-bottom: 1px solid $blue-border;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+}
+
+.logo {
+	float: left;
+	width: 180px;
+}
+
+.logo__link {
+	color: $white;
+	display: block;
+	padding: 18px 15px 14px;
+	&:hover {
+		color: $white;
+		background-color: $blue-border;
+	}
+	&:focus {
+		color: $white;
+	}
+}
+
+.logo__site {
+	@include bold;
+	text-transform: uppercase;
+	font-size: 1.2em;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+.logo__domain {
+	@include normal;
+}
+
+.logo__subtitle {
+	font-size: 0.9em;
+	color: $white;
+}
+
+.header__divider {
+	float: left;
+	margin-top: 3px;
+	width: 1px;
+	height: 59px;
+	background-color: $white-50;
+	display: none;
+}
+
+.menu {
+	float: left;
+	width: 600px;
+	display: inline-block;
+	text-align: center;
+	padding-top: 23px;
+}
+
+.menu__item {
+	display: inline-block;
+}
+
+.menu_item-link {
+	color: $white;
+	padding: 3px 7px 4px;
+	&:hover {
+		background-color: $blue-border;
+	}
+}
+
+.header__call-button {
+	float: right;
+	margin-top: 16px;
+}

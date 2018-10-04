@@ -1,0 +1,21 @@
+
+.banner {
+	background-color: $blue-border;
+	padding: 15px;
+}
+
+.banner__title {
+	text-align: center;
+	color: $white;
+	@include bold;
+	font-size: 2.5em;
+	text-transform: uppercase;
+}
+
+.banner__text {
+	text-align: center;
+	color: $white;
+	@include bold;
+	font-size: 1.3em;
+	line-height: 1.2;
+}

@@ -1,0 +1,21 @@
+
+.social__title {
+	@include bold;
+	margin-bottom: 8px;
+}
+
+.social__item {
+	display: inline-block;
+	padding: 0 1px;
+}
+
+.social__link {
+	display: inline-block;
+}
+
+.social__ico {
+	min-width: 24px;
+	min-height: 24px;
+	width: 24px;
+	height: auto;
+}

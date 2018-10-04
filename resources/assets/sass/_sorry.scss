@@ -1,0 +1,11 @@
+
+.sorry__block {
+	@include clearfix;
+}
+
+.sorry__link {
+	@extend .link;
+	@include bold;
+	// text-transform: none;
+	float: right;
+}

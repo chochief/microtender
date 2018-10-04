@@ -1,0 +1,87 @@
+
+.microtender {
+	@include clearfix;
+}
+
+.microtender__info {
+	@include normal;
+	font-size: 12px;
+	color: $blue;
+	margin-bottom: 14px;
+}
+
+
+.microtender__pic {
+	float: left;
+	width: 25%;
+	margin-right: 14px;
+}
+
+.microtender__pic-empty {
+	float: left;
+	width: 25%;
+	height: 140px;
+	color: $blue;
+	border: 1px solid $grey-body;
+	text-align: center;
+	position: relative;
+	span {
+		display: block;
+		position: absolute;
+		margin-top: -7px;
+		top: 50%;
+		left: 0;
+		right: 0;
+		font-size: 13px;
+	}
+}
+.microtender__text-block {
+	float: right;
+	width: 72%;
+	font-size: 0.9em;
+	@include clearfix;
+}
+
+.microtender__block {
+	// margin-top: 8px;
+}
+
+.microtender__text-grey {
+	color: $blue;
+}
+
+.microtender__list {
+	margin-top: 5px;
+}
+
+.microtender__bottom {
+	@include clearfix;
+	margin-top: 14px;
+}
+
+.microtender__budget {
+	float: left;
+	margin: 5px 14px 5px 0;
+}
+
+.microtender__start {
+	float: left;
+	padding: 5px 14px;
+	border: 1px solid $grey-body;
+}
+
+.microtender__want {
+	float: right;
+}
+
+.microtender__rub {
+	@extend .h3;
+	display: inline-block;
+	&>div {
+		display: inline-block;
+		width: 22px;
+		height: 23px;
+		background: url("../pic/rub.png") top 3px right 1px no-repeat;
+		background-size: 21px;
+	}
+}

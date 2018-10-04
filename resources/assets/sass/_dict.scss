@@ -1,0 +1,32 @@
+
+.dict__dir {
+	padding: 0 0 10px;
+}
+
+.dict__dir-name {
+	@extend .h4;
+	padding-bottom: 5px;
+}
+
+.dict__item {
+	@include clearfix;
+	&.dict_disabled {
+		color: $grey;
+	}
+}
+
+.dict__item-enabled {
+	// position: absolute;
+	// top: 10px;
+	// left: 10px;
+	cursor: pointer;
+	width: 35px;
+	display: inline-block;
+	float: left;
+}
+
+.dict__item-name {
+	display: inline-block;
+	float: left;
+	padding-left: 4px;
+}

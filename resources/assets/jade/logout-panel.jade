@@ -1,0 +1,10 @@
+.block.block_white
+	.social
+		.social__title Hello, {{bodyCtrl.username()}}!
+		span.footer__signin(ng-click="bodyCtrl.logout()") Выйти
+	.news
+		.news__title Новости
+		.news__item(ng-repeat="nw in [1,2]")
+			span.news__item-date 15.08.2016 
+			span.news__item-text В тестовом режиме начал ...
+			a.news__item-link(href="#") подробнее

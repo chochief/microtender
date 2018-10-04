@@ -1,0 +1,6 @@
+//- .top-form__message
+.top-form__message(ng-show="msgShow()")
+	.top-form__msg-title Сообщение
+	.top-form__msg {{ctrl.msg}}
+	button.button.button_red.top-form__close(ng-click="msgClose()") Закрыть
+	//- button.button.button_red.top-form__close(ng-click="close()") Закрыть

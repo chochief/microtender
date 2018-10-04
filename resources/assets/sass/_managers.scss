@@ -1,0 +1,106 @@
+
+.manager {
+	@include clearfix;
+	position: relative;
+	&.manager_disabled {
+		color: $grey;
+	}
+}
+
+.manager__block {
+	@include clearfix;
+}
+
+.manager__info {
+	@include normal;
+	font-size: 12px;
+	color: $blue;
+	margin-bottom: 14px;
+}
+
+.manager_left {
+	@extend .small;
+	width: 50%;
+	float: left;
+	padding: 0 10px 0 0;
+}
+
+.manager_right {
+	@extend .small;
+	width: 50%;
+	float: right;
+	padding: 0 0 0 10px;
+}
+
+.manager__line {
+	@extend .block__line;
+	margin-top: 15px;
+	margin-bottom: 10px;
+}
+
+.manager_site {
+	@extend .link;
+	&:after {
+		content: "";
+	}
+}
+
+.manager__params {
+	font-size: 0.95em;
+	color: $blue-border;
+}
+
+.manager__enabled {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	width: 35px;
+}
+
+.manager__edit {
+	position: absolute;
+	top: 8px;
+	// right: -31px;
+	left: 100%;
+	margin-left: 1px;
+	cursor: pointer;
+	padding: 2px 5px;
+	background-color: $blue-border;
+	color: $white;
+	font-size: 0.9em;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	&:hover {
+		background-color: saturate($blue-border, 15%);
+	}
+}
+
+.manager__del {
+	@extend .manager__edit;
+	top: 32px;
+	background-color: $cool-red;
+	&:hover {
+		background-color: saturate($cool-red, 15%);
+	}
+}
+
+.manager__del2 {
+	@extend .manager__del;
+	&:hover {
+		background-color: $cool-red;
+	}
+	@include clearfix;
+}
+
+.manager__del-btn {
+	// float: right;
+	padding: 0 3px;
+	color: darken($white, 10%);
+	&:hover {
+		background-color: saturate($cool-red, 15%);
+		// border: 1px solid $grey;
+		// text-decoration: underline;
+		color: $white;
+	}
+}

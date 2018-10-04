@@ -1,0 +1,14 @@
+//- .categories.block(ng-controller="adminavCtrl as adminavCtrl")
+.categories.block
+	.categories__title Разделы
+	ul.categories__list
+		li.categories__item
+			span.categories__link(ng-click="bodyCtrl.call('tenders')") Тендеры
+		li.categories__item
+			span.categories__link(ng-click="bodyCtrl.call('messages')") Сообщения
+		li.categories__item
+			span.categories__link(ng-click="bodyCtrl.call('managers')") Поставщики
+		li.categories__item
+			span.categories__link(ng-click="bodyCtrl.call('admin_cats')") Категории
+		li.categories__item
+			span.categories__link(ng-click="bodyCtrl.call('admin_cities')") Города			

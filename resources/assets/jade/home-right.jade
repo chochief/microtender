@@ -1,0 +1,28 @@
+.block.block_white
+	.social
+		.social__title Рассказать друзьям
+		ul.social__list
+			li.social__item
+				a.social__link(href="#")
+					img.social__ico(src="/pic/email.png" alt="")
+			li.social__item
+				a.social__link(href="#")
+					img.social__ico(src="/pic/vk.png" alt="")
+			li.social__item
+				a.social__link(href="#")
+					img.social__ico(src="/pic/tw.png" alt="")
+			li.social__item
+				a.social__link(href="#")
+					img.social__ico(src="/pic/ok.png" alt="")
+			li.social__item
+				a.social__link(href="#")
+					img.social__ico(src="/pic/fb.png" alt="")
+	.news
+		.news__title Новости
+		.news__item(ng-repeat="nw in [1,2]")
+			span.news__item-date 15.08.2016 
+			span.news__item-text В тестовом режиме начал ...
+			a.news__item-link(href="#") подробнее
+.adv.block.block_white(ng-repeat="adv in [1,2]")
+	a.adv__link(href="https://vk.com/yazabeg" target="_blank")
+		img.adv__pic(ng-src="/pic/yazabeg-{{adv}}.jpg" alt="")

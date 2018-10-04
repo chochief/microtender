@@ -1,0 +1,44 @@
+
+<div class="content__left">
+  <div class="categories block">
+    <div class="categories__title">Разделы</div>
+    <ul class="categories__list">
+      <li class="categories__item"><span ng-click="bodyCtrl.call('tenders')" class="categories__link">Тендеры</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('messages')" class="categories__link">Сообщения</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('managers')" class="categories__link">Поставщики</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('admin_cats')" class="categories__link">Категории</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('admin_cities')" class="categories__link">Города			</span></li>
+    </ul>
+  </div>
+</div>
+<div class="content__center">
+  <section class="block block_white">
+    <h1>Города</h1>
+    <div class="lead">Справочник регионов</div>
+    <div ng-repeat="district in admcitiesCtrl.districts()" class="dict__dir">
+      <div class="dict__dir-name">{{district.name}}</div>
+      <div ng-repeat="city in admcitiesCtrl.districtCities(district)" ng-class="{dict_disabled: !city.enabled}" class="dict__item">
+        <div ng-click="admcitiesCtrl.on_off(city)" class="dict__item-enabled">
+          <div ng-if="city.enabled" class="on">ON
+            <div> </div>
+          </div>
+          <div ng-if="!city.enabled" class="off">OFF
+            <div>					</div>
+          </div>
+        </div>
+        <div class="dict__item-name">{{city.name}}</div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="content__right">
+  <div class="block block_white">
+    <div class="social">
+      <div class="social__title">Hello, {{bodyCtrl.username()}}!</div><span ng-click="bodyCtrl.logout()" class="footer__signin">Выйти</span>
+    </div>
+    <div class="news">
+      <div class="news__title">Новости</div>
+      <div ng-repeat="nw in [1,2]" class="news__item"><span class="news__item-date">15.08.2016 </span><span class="news__item-text">В тестовом режиме начал ...</span><a href="#" class="news__item-link">подробнее</a></div>
+    </div>
+  </div>
+</div>

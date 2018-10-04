@@ -1,0 +1,63 @@
+.content__left
+	include home-left
+.content__center
+	section.block.block_white
+		h1 Хочу получать заявки на просчет
+		.lead Вы можете зарегистрироваться на сервисе для этого! {{regCtrl.surname}}
+		//- form.form(name="regForm" novalidate ng-submit="regCtrl.submit(regForm)")
+		form.form(frm="regForm" ctrl="regCtrl")
+			msg
+			inpt(model="company" type="text" label="Наименование компании *" required)
+			inpt(model="address" type="text" label="Адрес *" required)
+			inpt.size33(model="inn" type="text" label="ИНН")
+			inpt.size23r(model="site" type="text" label="Сайт")
+			.select-zone(ng-controller="selecCtrl as selecCtrl")
+				.form-group.form-group_left(ng-class="selecCtrl.openClass(1)" ng-controller="catCtrl as catCtrl")
+					label Категория
+					.select-panel
+						.select-panel__selected(ng-click="selecCtrl.open(1)") {{catCtrl.selectedCat()}}
+						//- ul.select-panel__list.select-panel__item-list_2col
+						ul.select-panel__list
+							li.select-panel__option(ng-repeat="cat in catCtrl.cats()") {{cat.name}}
+								ul.select-panel__item-list
+									li.select-panel__item(ng-repeat="subcat in catCtrl.subCats(cat)" ng-click="catCtrl.choice(subcat); selecCtrl.open(0)" ng-class="catCtrl.active(subcat)") {{subcat.name}}
+					span.help-block К какой отрасли относится
+				.form-group.form-group_right(ng-class="selecCtrl.openClass(2)" ng-controller="cityCtrl as cityCtrl")
+					label Город
+					.select-panel
+						.select-panel__selected(ng-click="selecCtrl.open(2)") {{cityCtrl.selectedCity()}}
+						ul.select-panel__list
+							li.select-panel__option(ng-repeat="district in cityCtrl.districts()") {{district.name}}
+								ul.select-panel__item-list
+									li.select-panel__item(ng-repeat="city in cityCtrl.districtCities(district)" ng-click="cityCtrl.choice(city); selecCtrl.open(0)" ng-class="cityCtrl.active(city)") {{city.name}}
+					span.help-block Где должен выполняться заказ
+			txar(model="description" label="Описание компании" help="Расскажите о преимуществах своей 	организации. Это поможет покупателю ответить именно на ваше предложение.")
+			//- .top-form__budget
+			//- 	.form-group.size33
+			//- 		label Бюджет
+			//- 		input(type="text" required ng-pattern="/^[0-9]+$/" ng-model="regCtrl.budget" ng-disabled="regCtrl.formDisabled()")
+			//- 		span.help-block Затраты, в руб.
+			//- 	.top-form__price
+			//- 		.check-panel(ng-click="regCtrl.priceToggle()" ng-class="regCtrl.priceState()") Пусть поставщики сами предложат цену
+			//- 
+			inpt.form-group_left.size33c(model="surname" type="text" label="Фамилия *" required)
+			inpt.form-group_left.size33c(model="name" type="text" label="Имя *" required)
+			inpt.form-group_right.size33r(model="middle_name" type="text" label="Отчество")
+			//- .help-block.help-block_33 Все поля обязательны для заполнения
+			inpt.form-group_left.size33c(model="post" type="text" label="Должность *" required)
+			inpt.form-group_left.size33c(model="phone" type="phone" label="Рабочий телефон *" required)
+			inpt.form-group_right.size33r(model="mobile" type="phone" label="Мобильный телефон")
+			.help-block.help-block_33 Поля * обязательны для заполнения
+			//- .form-group.form-group_left.size33c
+			//- 	label Ваш e-mail
+			//- 	input(type="text" ng-model="regCtrl.disabled" ng-disabled="regCtrl.formDisabled()")
+			//- 	//- input(type="email" required ng-minlength="7" ng-model="regCtrl.email" ng-disabled="regCtrl.formDisabled()")
+			//- .form-group.form-group_right.size33r
+			//- 	label Ваш телефон
+			//- 	input(type="text" required ng-pattern="/^[ 0-9+()-]{5,15}$/" ng-model="regCtrl.phone" ng-disabled="regCtrl.formDisabled()")
+			//- .help-block.help-block_33 Все поля обязательны для заполнения
+			inpt(model="email" type="email" label="Ваш email *" help="На этот адрес будут приходить заявки")
+			.top-form__bottom
+				button.top-form__want(type="submit" ng-disabled="regForm.$invalid || regCtrl.formDisabled() || regCtrl.customEmpty()") Добавить свою компанию
+.content__right
+	include home-right

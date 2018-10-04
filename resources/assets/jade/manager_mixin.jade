@@ -1,0 +1,81 @@
+mixin manager (type)
+	case type
+		when 'new'
+			- var model = 'regCtrl'
+			- var submitbtn = 'Добавить поставщика'
+			- var submit = 'regCtrl.submit(regForm)'
+		when 'edit'
+			- var model = "regCtrl.editing"
+			- var submitbtn = 'Сохранить поставщика'
+			- var submit = 'regCtrl.update(regForm)'
+	form.form(name="regForm" novalidate ng-submit="#{submit}")
+		.top-form__message(ng-if="regCtrl.showMsg()")
+			.top-form__msg-title Сообщение
+			.top-form__msg {{regCtrl.msg}}
+			button.button.button_red.top-form__close(ng-click="regCtrl.msgClose()") Закрыть
+		.form-group
+			label Наименование компании *
+			input(type="text" ng-model="#{model}.company" ng-disabled="regCtrl.formDisabled()" required ng-minlength="2" ng-click="regCtrl.clearSelect()")
+		.form-group
+			label Адрес *
+			input(type="text" ng-model="#{model}.address" ng-disabled="regCtrl.formDisabled()" required ng-minlength="5")
+		.form-group.size33
+			label ИНН *
+			input(type="text" ng-model="#{model}.inn" ng-disabled="regCtrl.formDisabled()" required ng-minlength="9")
+		.form-group.size23r
+			label Сайт
+			input(type="text" ng-model="#{model}.site" ng-disabled="regCtrl.formDisabled()")
+		.select-zone(ng-controller="selecCtrl as selecCtrl")
+			.form-group.form-group_left(ng-class="selecCtrl.openClass(1)" ng-controller="catCtrl as catCtrl" ng-init="regCtrl.catSet(catCtrl)")
+				label Категории *
+				.select-panel
+					.select-panel__selected(ng-click="selecCtrl.open(1)") {{catCtrl.selectedState()}}
+					//- ul.select-panel__list.select-panel__item-list_2col
+					ul.select-panel__list
+						li.select-panel__option(ng-repeat="cat in catCtrl.cats()") {{cat.name}}
+							ul.select-panel__item-list
+								li.select-panel__item(ng-repeat="subcat in catCtrl.subCats(cat)" ng-click="catCtrl.catsChoice(subcat)" ng-class="catCtrl.activeCat(subcat)") {{subcat.name}}
+				span.help-block Какие заявки вас интересуют
+				span.help-block.help-block_selected(ng-repeat="selectedCat in catCtrl.selectedCats()") {{selectedCat.name}}
+			.form-group.form-group_right(ng-class="selecCtrl.openClass(2)" ng-controller="cityCtrl as cityCtrl" ng-init="regCtrl.citySet(cityCtrl)")
+				label Города *
+				.select-panel
+					.select-panel__selected(ng-click="selecCtrl.open(2)") {{cityCtrl.selectedState()}}
+					ul.select-panel__list
+						li.select-panel__option(ng-repeat="district in cityCtrl.districts()") {{district.name}}
+							ul.select-panel__item-list
+								li.select-panel__item(ng-repeat="city in cityCtrl.districtCities(district)" ng-click="cityCtrl.cityChoice(city)" ng-class="cityCtrl.activeCity(city)") {{city.name}}
+				span.help-block Откуда должны приходить заявки
+				span.help-block.help-block_selected(ng-repeat="selectedCity in cityCtrl.selectedCities()") {{selectedCity.name}}
+		.form-group
+			label Описание компании *
+			textarea(ng-model="#{model}.description" ng-disabled="regCtrl.formDisabled()" text-area form="regForm" ctrl="#{model}" rows="5" required ng-minlength="10")
+			.hiddendiv
+			span.help-block Расскажите немного о компании
+			//- span.help-block Расскажите о преимуществах своей организации. Это поможет покупателю ответить именно на ваше предложение.
+		.form-group.form-group_left.size33c
+			label Фамилия *
+			input(type="text" ng-model="#{model}.surname" ng-disabled="regCtrl.formDisabled()" required)
+		.form-group.form-group_left.size33c
+			label Имя *
+			input(type="text" ng-model="#{model}.name" ng-disabled="regCtrl.formDisabled()" required)
+		.form-group.form-group_right.size33r
+			label Отчество
+			input(type="text" ng-model="#{model}.middle_name" ng-disabled="regCtrl.formDisabled()")
+		//-
+		.form-group.form-group_left.size33c
+			label Должность *
+			input(type="text" ng-model="#{model}.post" ng-disabled="regCtrl.formDisabled()" required ng-minlength="3")
+		.form-group.form-group_left.size33c
+			label Рабочий телефон *
+			input(type="text" ng-model="#{model}.phone" ng-disabled="regCtrl.formDisabled()" required ng-minlength="4" ng-pattern="/^[ 0-9+()-]{5,25}$/")
+		.form-group.form-group_right.size33r
+			label Мобильный телефон
+			input(type="text" ng-model="#{model}.mobile" ng-disabled="regCtrl.formDisabled()" ng-pattern="/^[ 0-9+()-]{5,25}$/")
+		.help-block.help-block_33 Поля * обязательны для заполнения
+		.form-group
+			label Ваш email *
+			input(type="email" ng-model="#{model}.email" ng-disabled="regCtrl.formDisabled()" required ng-minlength="7")
+			.help-block На этот адрес будут приходить заявки
+		.top-form__bottom
+			button.top-form__want(type="submit" ng-disabled="regForm.$invalid || regCtrl.formDisabled() || regCtrl.customEmpty()") #{submitbtn}

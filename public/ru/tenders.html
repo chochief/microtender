@@ -1,0 +1,53 @@
+
+<div class="content__left">
+  <div class="categories block">
+    <div class="categories__title">Разделы</div>
+    <ul class="categories__list">
+      <li class="categories__item"><span ng-click="bodyCtrl.call('tenders')" class="categories__link">Тендеры</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('messages')" class="categories__link">Сообщения</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('managers')" class="categories__link">Поставщики</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('admin_cats')" class="categories__link">Категории</span></li>
+      <li class="categories__item"><span ng-click="bodyCtrl.call('admin_cities')" class="categories__link">Города			</span></li>
+    </ul>
+  </div>
+</div>
+<div class="content__center">
+  <section class="block block_white">
+    <h1>Тендеры</h1>
+    <div class="lead">Какие заявки куда распределены</div>
+    <form name="tenderSearchForm" novalidate="novalidate" class="form">
+      <div class="form-group">
+        <label>Фильтр</label>
+        <input type="text" ng-model="tendersCtrl.search"/><span class="help-block">Быстрый поиск по тендерам</span>
+      </div>
+    </form>
+  </section>
+  <section ng-repeat="tender in tendersCtrl.tenders() | filter:tendersCtrl.search" class="block block_white microtender">
+    <div class="microtender__info">#{{tender.id}} | {{tendersCtrl.getDate(tender.created_at) | date:"dd.MM.yyyy HH:mm"}} | {{tender.category}} | {{tender.city}}</div>
+    <div class="microtender__rub">{{tender.budjet}}
+      <div></div>
+    </div>
+    <div class="lead">{{tender.text}}</div>
+    <div class="tender__block">
+      <div class="tender__left">
+        <div class="h4">Заказчик</div>
+        <div class="tender_recepient">Имя: {{tender.customer.name}}<br/>E-mail: {{tender.customer.email}}<br/>Телефон: {{tender.customer.phone}}</div>
+      </div>
+      <div class="tender__right">
+        <div class="h4">Поставщики</div>
+        <div ng-repeat="recipient in tender.recipients" class="tender_recepient">Имя: {{recipient.surname}} {{recipient.name}} {{recipient.middle_name}}<br/>E-mail: {{recipient.email}}<br/>Компания: {{recipient.company}}</div>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="content__right">
+  <div class="block block_white">
+    <div class="social">
+      <div class="social__title">Hello, {{bodyCtrl.username()}}!</div><span ng-click="bodyCtrl.logout()" class="footer__signin">Выйти</span>
+    </div>
+    <div class="news">
+      <div class="news__title">Новости</div>
+      <div ng-repeat="nw in [1,2]" class="news__item"><span class="news__item-date">15.08.2016 </span><span class="news__item-text">В тестовом режиме начал ...</span><a href="#" class="news__item-link">подробнее</a></div>
+    </div>
+  </div>
+</div>
